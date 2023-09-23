@@ -1,11 +1,10 @@
 import { Sequelize } from "sequelize";
 
 const dbConfig = {
-  database: "db_name",
-  username: "db_username",
-  password: "db_password",
-  host: "db_host",
-  dialect: "db_type",
+  database: "sql3648569",
+  username: "sql3648569",
+  password: "Ur6v3N1gje",
+  host: "sql3.freesqldatabase.com",
 };
 
 const sequelize = new Sequelize(
@@ -14,7 +13,7 @@ const sequelize = new Sequelize(
   dbConfig.password,
   {
     host: dbConfig.host,
-    dialect: dbConfig.dialect,
+    dialect: 'mysql',
     logging: false,
   }
 );
