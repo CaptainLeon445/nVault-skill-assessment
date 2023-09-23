@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkDroneBattery = exports.checkAvailableDrones = exports.checkLoadMedications = exports.loadDrone = exports.registerDrone = void 0;
 const drone_service_1 = __importDefault(require("../services/drone.service"));
+const logger_1 = __importDefault(require("../logger"));
 const registerDrone = async (req, res, next) => {
     try {
         const { serialNumber, model, weightLimit, batteryCapacity } = req.body;
@@ -15,6 +16,7 @@ const registerDrone = async (req, res, next) => {
         });
     }
     catch (error) {
+        logger_1.default.info(error);
         next(error);
     }
 };
@@ -30,6 +32,7 @@ const loadDrone = async (req, res, next) => {
         });
     }
     catch (error) {
+        logger_1.default.info(error);
         next(error);
     }
 };
@@ -44,6 +47,7 @@ const checkLoadMedications = async (req, res, next) => {
         });
     }
     catch (error) {
+        logger_1.default.info(error);
         next(error);
     }
 };
@@ -58,6 +62,7 @@ const checkAvailableDrones = async (req, res, next) => {
         });
     }
     catch (error) {
+        logger_1.default.info(error);
         next(error);
     }
 };
@@ -72,6 +77,7 @@ const checkDroneBattery = async (req, res, next) => {
         });
     }
     catch (error) {
+        logger_1.default.info(error);
         next(error);
     }
 };

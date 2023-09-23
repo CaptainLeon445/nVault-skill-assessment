@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const logger_1 = __importDefault(require("../logger"));
 const medication_models_1 = __importDefault(require("../models/medication.models"));
 class MedicationService {
     static async createMedication(name, weight, code, image) {
@@ -16,6 +17,7 @@ class MedicationService {
             return medication;
         }
         catch (error) {
+            logger_1.default.info(error);
             throw new Error("Error creating medication");
         }
     }
@@ -23,22 +25,24 @@ class MedicationService {
         try {
             const medication = await medication_models_1.default.findByPk(medicationId);
             if (!medication) {
+                logger_1.default.info("Medication not Found");
                 throw new Error("Medication not Found");
             }
             return medication;
         }
         catch (error) {
-            throw new Error('Error fetching medication: ');
+            logger_1.default.info(error);
+            throw new Error("Error fetching medication: ");
         }
     }
     static async getAllMedications() {
         try {
-            console.log("hello");
             const medications = await medication_models_1.default.findAll();
             return medications;
         }
         catch (error) {
-            throw new Error('Error fetching medications: ');
+            logger_1.default.info(error);
+            throw new Error("Error fetching medications: ");
         }
     }
 }
