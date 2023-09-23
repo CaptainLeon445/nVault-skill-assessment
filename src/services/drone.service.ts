@@ -26,7 +26,8 @@ export default class DroneService {
   static async loadDrone(
     serialNumber: string,
     medicationWeight: number,
-    batteryLevel: number
+    batteryLevel: number,
+    medicationId: number
   ) {
     try {
       const drone = await Drone.findOne({
@@ -38,7 +39,7 @@ export default class DroneService {
       if (drone.state !== 'IDLE'){
         throw new Error ("Drone is not in IDLE state")
       }
-      if (drone.batteryCapacity < batteryLevel || drone.weightLimit < medicationWeight){
+      if (drone.batteryCapacity < batteryLevel){
         throw new Error ("Drone cannot be loaded")
       }
 
@@ -46,7 +47,7 @@ export default class DroneService {
       if (!medication) {
         throw new Error ('Medication not Found')
       }
-      if (medicationWeight > drone.weightLimit){
+      if (medication.weight > drone.weightLimit){
         throw new Error('Medication too heavy for this drone');
       }
       await DroneMedication.create({
@@ -77,4 +78,25 @@ export default class DroneService {
       throw new Error("Error Registering Drone");
     }
   }
+
+  static async checkAvailableDrones(){
+    try{
+        const AvailableDrones = await Drone.findAll({where: {state: 'IDLE'}});
+        return AvailableDrones
+    }catch(error){
+        throw new Error('Error checking available drones: ')
+    }
+}
+
+static async checkDroneBattery(serialNumber:string){
+    try{
+        const drone = await Drone.findOne({where: {serialNumber}});
+        if (!drone){
+            throw new Error('Drone not found')
+        }
+        return drone.batteryCapacity
+    }catch(error){
+        throw new Error('Error checking drone battery level: ')
+    }
+}
 }
