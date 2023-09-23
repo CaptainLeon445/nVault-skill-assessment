@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import DroneService from "../services/drone.service";
-import { validateRegisterDrone } from "../validation/valiadtion";
 
 export const registerDrone = async (
   req: Request,
@@ -8,15 +7,6 @@ export const registerDrone = async (
   next: NextFunction
 ) => {
   try {
-    const { body } = req;
-    const { error } = validateRegisterDrone(body);
-    if (error) {
-      return res.status(400).json({
-        error: {
-          message: error.details[0].message,
-        },
-      });
-    }
     const { serialNumber, model, weightLimit, batteryCapacity } = req.body;
     const data = await DroneService.registerDrone(
       serialNumber,

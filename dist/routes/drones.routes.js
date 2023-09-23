@@ -5,8 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const drones_controller_1 = require("../controllers/drones.controller");
+const valiadtion_1 = require("../validation/valiadtion");
 const router = express_1.default.Router();
-router.post("/", drones_controller_1.registerDrone);
+router.post("/", valiadtion_1.validateDroneRegistration, drones_controller_1.registerDrone);
 router.post("/:serialNumber/load", drones_controller_1.loadDrone);
 router.get("/:serialNumber/medications", drones_controller_1.checkLoadMedications);
 router.get("/available", drones_controller_1.checkAvailableDrones);

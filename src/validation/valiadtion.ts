@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 
 const registerDroneSchema = Joi.object({
@@ -9,6 +10,19 @@ const registerDroneSchema = Joi.object({
   batteryCapacity: Joi.number().required(),
 });
 
-export const validateRegisterDrone = (data: any) => {
-  return registerDroneSchema.validate(data);
+export const validateDroneRegistration = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { error } = registerDroneSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({
+      error: {
+        message: error.details[0].message,
+      },
+    });
+  }
+
+  next();
 };
