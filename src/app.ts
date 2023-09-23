@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import droneRoutes from "./routes/drones.routes";
 import medicationRoutes from "./routes/medications.routes";
+import { globalErrorHandler } from "./middleware/error.middleware";
 
 const app: Application = express();
 
@@ -10,5 +11,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 app.use("/drones", droneRoutes);
 app.use("/medications", medicationRoutes);
+
+app.use(globalErrorHandler)
 
 export default app;

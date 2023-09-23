@@ -1,7 +1,11 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import DroneService from "../services/drone.service";
 
-export const registerDrone = async (req: Request, res: Response) => {
+export const registerDrone = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { serialNumber, model, weightLimit, batteryCapacity } = req.body;
     const data = await DroneService.registerDrone(
@@ -15,16 +19,17 @@ export const registerDrone = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Error",
-      error: error.message,
-    });
+    next(error);
   }
 };
 
-export const loadDrone = async (req: Request, res: Response) => {
+export const loadDrone = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    req.body.serialNumber = req.params.serialNumber
+    req.body.serialNumber = req.params.serialNumber;
     const { serialNumber, medicationId, batteryLevel } = req.body;
     const data = await DroneService.loadDrone(
       serialNumber,
@@ -36,14 +41,15 @@ export const loadDrone = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Error",
-      error: error.message,
-    });
+    next(error);
   }
 };
 
-export const checkLoadMedications = async (req: Request, res: Response) => {
+export const checkLoadMedications = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { serialNumber } = req.params;
     const data = await DroneService.checkLoadedMedications(serialNumber);
@@ -52,14 +58,15 @@ export const checkLoadMedications = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Error",
-      error: error.message,
-    });
+    next(error);
   }
 };
 
-export const checkAvailableDrones = async (req: Request, res: Response) => {
+export const checkAvailableDrones = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const data = await DroneService.checkAvailableDrones();
     res.status(200).json({
@@ -68,14 +75,15 @@ export const checkAvailableDrones = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Error",
-      error: error.message,
-    });
+    next(error);
   }
 };
 
-export const checkDroneBattery = async (req: Request, res: Response) => {
+export const checkDroneBattery = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { serialNumber } = req.params;
     const data = await DroneService.checkDroneBattery(serialNumber);
@@ -84,9 +92,6 @@ export const checkDroneBattery = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Error",
-      error: error.message,
-    });
+    next(error);
   }
 };
