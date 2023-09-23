@@ -5,6 +5,13 @@ class Medication extends Model {
   public weight!: number;
   public code!: string;
   public image!: string;
+
+  static associate(models: any) {
+    Medication.belongsToMany(models.Drone, {
+      through: "DroneMedication",
+      foreignKey: "medicationId",
+    });
+  }
 }
 
 Medication.init(

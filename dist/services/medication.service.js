@@ -19,5 +19,26 @@ class MedicationService {
             throw new Error("Error creating medication");
         }
     }
+    static async getMedication(medicationId) {
+        try {
+            const medication = await medication_models_1.default.findByPk(medicationId);
+            if (!medication) {
+                throw new Error("Medication not Found");
+            }
+            return medication;
+        }
+        catch (error) {
+            throw new Error('Error fetching medication: ');
+        }
+    }
+    static async getAllMedications() {
+        try {
+            const medications = await medication_models_1.default.findAll();
+            return medications;
+        }
+        catch (error) {
+            throw new Error('Error fetching medications: ');
+        }
+    }
 }
 exports.default = MedicationService;

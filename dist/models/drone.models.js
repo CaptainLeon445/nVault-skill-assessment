@@ -2,6 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 class Drone extends sequelize_1.Model {
+    static associate(models) {
+        Drone.belongsToMany(models.Medication, {
+            through: "DroneMedication",
+            foreignKey: "droneId",
+        });
+    }
 }
 Drone.init({
     id: {
@@ -12,10 +18,10 @@ Drone.init({
     serialNumber: {
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: false,
-        unique: true
+        unique: true,
     },
     model: {
-        type: sequelize_1.DataTypes.ENUM('Lightweight', 'Middleweight', 'Cruiserweight', 'Heavyweight'),
+        type: sequelize_1.DataTypes.ENUM("Lightweight", "Middleweight", "Cruiserweight", "Heavyweight"),
         allowNull: false,
     },
     weightLimit: {
@@ -27,13 +33,13 @@ Drone.init({
         allowNull: false,
     },
     state: {
-        type: sequelize_1.DataTypes.ENUM('IDLE', 'LOADING', 'LOADED', 'DELIVERING', 'DELIVERED', 'RETURNING'),
+        type: sequelize_1.DataTypes.ENUM("IDLE", "LOADING", "LOADED", "DELIVERING", "DELIVERED", "RETURNING"),
         allowNull: false,
-        defaultValue: 'IDLE'
+        defaultValue: "IDLE",
     },
 }, {
     sequelize,
     modelName: "Drone",
-    tableName: 'drones'
+    tableName: "drones",
 });
 exports.default = Drone;

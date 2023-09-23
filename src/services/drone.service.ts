@@ -1,4 +1,6 @@
 import Drone from "../models/drone.models";
+import DroneMedication from "../models/droneMedication.model";
+import Medication from "../models/medication.models";
 
 export default class DroneService {
   static async registerDrone(
@@ -39,9 +41,24 @@ export default class DroneService {
       if (drone.batteryCapacity < batteryLevel || drone.weightLimit < medicationWeight){
         throw new Error ("Drone cannot be loaded")
       }
+
+      const medication = await Medication.findByPk(medicationId)
+      if (!medication) {
+        throw new Error ('Medication not Found')
+      }
+      if (medicationWeight > drone.weightLimit){
+        throw new Error('Medication too heavy for this drone');
+      }
+      await DroneMedication.create({
+        droneId : drone.id,
+        medicationId: medication.id
+      })
+
+      drone.state = 'LOADED';
+      await drone.save();
       return drone;
     } catch (error) {
-      throw new Error("Error Registering Drone");
+      throw new Error("Error loading this Drone");
     }
   }
 

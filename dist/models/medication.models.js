@@ -2,6 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 class Medication extends sequelize_1.Model {
+    static associate(models) {
+        Medication.belongsToMany(models.Drone, {
+            through: "DroneMedication",
+            foreignKey: "medicationId",
+        });
+    }
 }
 Medication.init({
     id: {
