@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
+const connection_1 = __importDefault(require("../db/connection"));
 class Drone extends sequelize_1.Model {
     static associate(models) {
         Drone.belongsToMany(models.Medication, {
@@ -38,7 +42,7 @@ Drone.init({
         defaultValue: "IDLE",
     },
 }, {
-    sequelize,
+    sequelize: connection_1.default,
     modelName: "Drone",
     tableName: "drones",
 });

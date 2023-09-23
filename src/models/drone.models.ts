@@ -1,4 +1,5 @@
 import { DataTypes, Model } from "sequelize";
+import sequelize from "../db/connection";
 class Drone extends Model {
   public id!: number;
   public serialNumber!: string;
