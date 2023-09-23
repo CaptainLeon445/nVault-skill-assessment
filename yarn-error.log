@@ -1,0 +1,48 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Hp\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add express sequelize mysql2 @types/express @types/mysql2 @types/sequelize typescript dotenv joi @types/joi
+
+PATH: 
+  C:\Python311\Scripts\;C:\Python311\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\CMake\bin;C:\Program Files\GTK3-Runtime Win64\bin;C:\Program Files\gettext-iconv\bin;C:\Program Files\PostgreSQL\14\bin;C:\Program Files\PostgreSQL\14\lib;C:\Users\Hp\anaconda3;C:\Users\Hp\anaconda3\Library\mingw-w64\bin;C:\Users\Hp\anaconda3\Library\usr\bin;C:\Users\Hp\anaconda3\Library\bin;C:\Users\Hp\anaconda3\Scripts;C:\Users\Hp\anaconda3\anaconda;C:\Users\Hp\anaconda3\anaconda\Library\mingw-w64\bin;C:\Users\Hp\anaconda3\anaconda\Library\usr\bin;C:\Users\Hp\anaconda3\anaconda\Library\bin;C:\Users\Hp\anaconda3\anaconda\Scripts;C:\Users\Hp\AppData\Local\Microsoft\WindowsApps;C:\src\flutter\bin;C:\Users\Hp\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Hp\AppData\Local\atom\bin;C:\Program Files\heroku\bin;C:\Python3X;C:\OSGeo4W\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;C:\Program Files\MongoDB\Server\6.0\bin;C:\Users\Hp\Downloads\mongosh-1.8.2-win32-x64\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Hp\anaconda3;C:\Users\Hp\anaconda3\Library\mingw-w64\bin;C:\Users\Hp\anaconda3\Library\usr\bin;C:\Users\Hp\anaconda3\Library\bin;C:\Users\Hp\anaconda3\Scripts;C:\Users\Hp\anaconda3\anaconda;C:\Users\Hp\anaconda3\anaconda\Library\mingw-w64\bin;C:\Users\Hp\anaconda3\anaconda\Library\usr\bin;C:\Users\Hp\anaconda3\anaconda\Library\bin;C:\Users\Hp\anaconda3\anaconda\Scripts;C:\Users\Hp\AppData\Local\Microsoft\WindowsApps;C:\src\flutter\bin;C:\Users\Hp\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Hp\AppData\Local\atom\bin;C:\Program Files\heroku\bin;C:\Users\Hp\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.18.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@types%2fmysql2: Not found
+      at Request.params.callback [as _callback] (C:\Users\Hp\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
+      at Request.self.callback (C:\Users\Hp\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (C:\Users\Hp\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (C:\Users\Hp\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1358:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  {
+    "name": "nvault",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "build": "npx tsc",
+      "start": ""
+    },
+    "keywords": [],
+    "author": "Christopher Ifeoluwa Oni",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
