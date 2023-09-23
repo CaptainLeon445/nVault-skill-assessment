@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.checkDroneBattery = exports.checkAvailableDrones = exports.checkLoadMedications = exports.loadDrone = exports.registerDrone = void 0;
+const registerDrone = (req, res) => { };
+exports.registerDrone = registerDrone;
+const loadDrone = (req, res) => { };
+exports.loadDrone = loadDrone;
+const checkLoadMedications = (req, res) => { };
+exports.checkLoadMedications = checkLoadMedications;
+const checkAvailableDrones = (req, res) => { };
+exports.checkAvailableDrones = checkAvailableDrones;
+const checkDroneBattery = (req, res) => { };
+exports.checkDroneBattery = checkDroneBattery;
