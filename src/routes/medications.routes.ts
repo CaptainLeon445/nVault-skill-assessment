@@ -1,18 +1,13 @@
 import express from "express";
 import {
-  checkAvailableDrones,
-  checkDroneBattery,
-  checkLoadMedications,
-  loadDrone,
-  registerDrone,
-} from "../controllers/drones.controller";
+  createMedication,
+  getAllMedications,
+  getMedication,
+} from "../controllers/medications.controller";
 
 const router = express.Router();
 
-router.post("/", registerDrone);
-router.post("/:serialNumber/load", loadDrone);
-router.get("/:serialNumber/medications", checkLoadMedications);
-router.get("/available", checkAvailableDrones);
-router.get("/:serialNumber/battery", checkDroneBattery);
-
+router.get("/", getAllMedications);
+router.post("/", createMedication);
+router.post("/:medicationId", getMedication);
 export default router;
