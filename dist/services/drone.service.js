@@ -22,7 +22,7 @@ class DroneService {
             throw new Error("Error Registering Drone");
         }
     }
-    static async loadDrone(serialNumber, medicationWeight, batteryLevel, medicationId) {
+    static async loadDrone(serialNumber, batteryLevel, medicationId) {
         try {
             const drone = await drone_models_1.default.findOne({
                 where: { serialNumber }

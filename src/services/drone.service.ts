@@ -25,7 +25,6 @@ export default class DroneService {
 
   static async loadDrone(
     serialNumber: string,
-    medicationWeight: number,
     batteryLevel: number,
     medicationId: number
   ) {
