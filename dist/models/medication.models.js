@@ -11,18 +11,24 @@ Medication.init({
     },
     name: {
         type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
     },
     weight: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.FLOAT,
+        allowNull: false,
     },
     code: {
         type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+        unique: true,
     },
     image: {
         type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
     },
 }, {
     sequelize,
     modelName: "Medication",
+    tableName: "medications",
 });
 exports.default = Medication;

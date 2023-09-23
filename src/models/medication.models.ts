@@ -16,20 +16,26 @@ Medication.init(
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     weight: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.FLOAT,
+      allowNull: false,
     },
     code: {
       type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
     },
     image: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
     sequelize,
     modelName: "Medication",
+    tableName: "medications",
   }
 );
 

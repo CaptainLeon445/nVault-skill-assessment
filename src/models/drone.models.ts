@@ -16,24 +16,33 @@ Drone.init(
       primaryKey: true,
     },
     serialNumber: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
+      allowNull: false,
+      unique: true
     },
     model: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('Lightweight', 'Middleweight', 'Cruiserweight', 'Heavyweight'),
+      allowNull: false,
     },
     weightLimit: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.FLOAT,
+      allowNull: false,
+
     },
     batteryCapacity: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.FLOAT,
+      allowNull: false,
     },
     state: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('IDLE', 'LOADING', 'LOADED', 'DELIVERING', 'DELIVERED', 'RETURNING'),
+      allowNull: false,
+      defaultValue: 'IDLE'
     },
   },
   {
     sequelize,
     modelName: "Drone",
+    tableName: 'drones'
   }
 );
 
