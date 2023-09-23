@@ -1,5 +1,4 @@
-import express, { Application, Request, Response } from "express";
-import dotenv from "dotenv";
+import express, {Application, Request, Response } from "express";
 
 const app: Application = express();
 const port: number = 3000;
@@ -12,5 +11,4 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 
-//  mysql2 @types/mysql2
 
