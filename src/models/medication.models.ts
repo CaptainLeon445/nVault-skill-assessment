@@ -2,7 +2,7 @@ import { DataTypes, Model } from "sequelize";
 class Medication extends Model {
   public id!: number;
   public name!: string;
-  public weight!: string;
+  public weight!: number;
   public code!: string;
   public image!: string;
 }
@@ -18,7 +18,7 @@ Medication.init(
       type: DataTypes.STRING,
     },
     weight: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
     },
     code: {
       type: DataTypes.STRING,

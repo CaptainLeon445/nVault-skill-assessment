@@ -13,7 +13,7 @@ Medication.init({
         type: sequelize_1.DataTypes.STRING,
     },
     weight: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.NUMBER,
     },
     code: {
         type: sequelize_1.DataTypes.STRING,

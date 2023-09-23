@@ -16,10 +16,10 @@ Drone.init({
         type: sequelize_1.DataTypes.STRING,
     },
     weightLimit: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.NUMBER,
     },
     batteryCapacity: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.NUMBER,
     },
     state: {
         type: sequelize_1.DataTypes.STRING,

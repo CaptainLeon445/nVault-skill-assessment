@@ -3,8 +3,8 @@ class Drone extends Model {
   public id!: number;
   public serialNumber!: string;
   public model!: string;
-  public weightLimit!: string;
-  public batteryCapacity!: string;
+  public weightLimit!: number;
+  public batteryCapacity!: number;
   public state!: string;
 }
 
@@ -22,10 +22,10 @@ Drone.init(
       type: DataTypes.STRING,
     },
     weightLimit: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
     },
     batteryCapacity: {
-      type: DataTypes.STRING,
+      type: DataTypes.NUMBER,
     },
     state: {
       type: DataTypes.STRING,
