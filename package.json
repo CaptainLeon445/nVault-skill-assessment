@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "npx tsc",
-    "start": "concurrently \"npx tsc --watch\""
+    "start-sever": "node dist/index.js",
+    "watch": "npx tsc --watch",
+    "start": "concurrently \"node dist/index.js\" \"npx tsc --watch\""
   },
+  "keywords": [],
   "author": "Christopher Ifeoluwa Oni",
   "license": "ISC",
   "dependencies": {
