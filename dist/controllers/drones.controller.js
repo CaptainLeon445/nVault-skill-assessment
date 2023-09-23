@@ -5,8 +5,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkDroneBattery = exports.checkAvailableDrones = exports.checkLoadMedications = exports.loadDrone = exports.registerDrone = void 0;
 const drone_service_1 = __importDefault(require("../services/drone.service"));
+const valiadtion_1 = require("../validation/valiadtion");
 const registerDrone = async (req, res, next) => {
     try {
+        const { body } = req;
+        const { error } = (0, valiadtion_1.validateRegisterDrone)(body);
+        if (error) {
+            return res.status(400).json({
+                error: {
+                    message: error.details[0].message,
+                },
+            });
+        }
         const { serialNumber, model, weightLimit, batteryCapacity } = req.body;
         const data = await drone_service_1.default.registerDrone(serialNumber, model, weightLimit, batteryCapacity);
         res.status(201).json({
