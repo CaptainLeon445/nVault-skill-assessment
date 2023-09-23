@@ -15,7 +15,6 @@ class Drone extends Model {
     });
   }
 }
-
 Drone.init(
   {
     id: {

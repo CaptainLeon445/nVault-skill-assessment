@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import DroneService from "../services/drone.service";
+import logger from "../logger";
 
 export const registerDrone = async (
   req: Request,
@@ -19,7 +20,8 @@ export const registerDrone = async (
       data,
     });
   } catch (error) {
-    next(error);
+    logger.info(error)
+    next(error)
   }
 };
 
@@ -41,7 +43,8 @@ export const loadDrone = async (
       data,
     });
   } catch (error) {
-    next(error);
+    logger.info(error)
+    next(error)
   }
 };
 
@@ -58,7 +61,8 @@ export const checkLoadMedications = async (
       data,
     });
   } catch (error) {
-    next(error);
+    logger.info(error)
+    next(error)
   }
 };
 
@@ -75,7 +79,8 @@ export const checkAvailableDrones = async (
       data,
     });
   } catch (error) {
-    next(error);
+    logger.info(error)
+    next(error)
   }
 };
 
@@ -92,6 +97,7 @@ export const checkDroneBattery = async (
       data,
     });
   } catch (error) {
-    next(error);
+    logger.info(error)
+    next(error)
   }
 };

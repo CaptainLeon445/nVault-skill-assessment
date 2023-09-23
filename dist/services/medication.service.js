@@ -33,6 +33,7 @@ class MedicationService {
     }
     static async getAllMedications() {
         try {
+            console.log("hello");
             const medications = await medication_models_1.default.findAll();
             return medications;
         }

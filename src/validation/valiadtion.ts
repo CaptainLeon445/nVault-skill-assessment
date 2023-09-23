@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
+import logger from "../logger";
 
 const registerDroneSchema = Joi.object({
   serialNumber: Joi.string().max(100).required(),
@@ -17,6 +18,7 @@ export const validateDroneRegistration = (
 ) => {
   const { error } = registerDroneSchema.validate(req.body);
   if (error) {
+    logger.info(error.details[0].message);
     return res.status(400).json({
       error: {
         message: error.details[0].message,

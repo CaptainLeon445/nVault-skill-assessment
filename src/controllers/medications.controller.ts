@@ -40,7 +40,6 @@ export const getMedication = async (req: Request, res: Response) => {
 
 export const getAllMedications = async (req: Request, res: Response) => {
   try {
-    const { serialNumber } = req.params;
     const data = await MedicationService.getAllMedications();
     res.status(200).json({
       message: "Success",

@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize";
+import logger from "../logger";
 
 const dbConfig = {
   database: "sql3648569",
@@ -13,17 +14,17 @@ const sequelize = new Sequelize(
   dbConfig.password,
   {
     host: dbConfig.host,
-    dialect: 'mysql',
+    dialect: "mysql",
     logging: false,
   }
 );
-
 sequelize
   .authenticate()
   .then(() => {
     console.log("Database connected successfully!");
   })
   .catch((err: Error) => {
+    logger.info("Unable to connect to the database");
     console.error("Unable to connect to the database");
   });
 

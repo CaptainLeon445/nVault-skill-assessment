@@ -41,7 +41,6 @@ const getMedication = async (req, res) => {
 exports.getMedication = getMedication;
 const getAllMedications = async (req, res) => {
     try {
-        const { serialNumber } = req.params;
         const data = await medication_service_1.default.getAllMedications();
         res.status(200).json({
             message: "Success",
