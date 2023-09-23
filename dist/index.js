@@ -8,7 +8,7 @@ const app = (0, express_1.default)();
 const port = 3000;
 app.use(express_1.default.json());
 app.get("/", (req, res) => {
-    res.send("Express and Typescript server");
+    res.send("Express and Typescript server with Leon. Ok43");
 });
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
