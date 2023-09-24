@@ -32,7 +32,6 @@ export default class DroneService {
       throw new AppError("Drone is not in IDLE state", 404);
     } else if (drone.batteryCapacity < 25) {
       logger.error("Drone cannot be loaded");
-      console.log("here")
       throw new AppError("Drone cannot be loaded", 404);
     } else {
       const medication = await Medication.findOne({

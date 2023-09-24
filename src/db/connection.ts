@@ -25,7 +25,6 @@ sequelize
   })
   .catch((err) => {
     logger.error("Unable to connect to the database", err);
-    console.error("Unable to connect to the database", err.message);
   });
 
 export default sequelize;

@@ -20,7 +20,6 @@ async () => {
     console.log("Models Scynchronized with the database");
   } catch (error) {
     logger.error(error);
-    console.error("Error synchronizing models");
   } finally {
     sequelize.close();
   }
