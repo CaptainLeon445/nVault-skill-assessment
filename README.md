@@ -24,6 +24,8 @@ traditional transportation infrastructure.
 Useful drone functions include delivery of small items that are (urgently) needed in locations
 with difficult access.
 
+This docummentation provides the guidlines in cloning and the running the codes on your local machine. 
+
 ## Features
 
 - Express.js for handling HTTP requests.
