@@ -15,7 +15,6 @@ class job {
         schedule.scheduleJob(rule, async function() {
             try{
                 const data=await DroneService.checkDroneBatteryLevels()
-                console.log(data)
                 logger.info({
                     batteryLevels: data
                 })

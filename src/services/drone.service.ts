@@ -26,23 +26,23 @@ export default class DroneService {
     });
     if (!drone) {
       logger.error("Drone not found");
-      throw new Error("Drone not found");
+      throw new AppError("Drone not found", 404);
     } else if (drone.state !== "IDLE") {
       logger.error("Drone is not in IDLE state");
-      throw new Error("Drone is not in IDLE state");
+      throw new AppError("Drone is not in IDLE state", 404);
     } else if (drone.batteryCapacity < 25) {
       logger.error("Drone cannot be loaded");
-      throw new Error("Drone cannot be loaded");
+      throw new AppError("Drone cannot be loaded", 404);
     } else {
       const medication = await Medication.findOne({
         where: { id: medicationId },
       });
       if (!medication) {
         logger.error("Medication not Found");
-        return new Error("Medication not Found");
+        return new AppError("Medication not Found", 404);
       } else if (medication.weight > drone.weightLimit) {
         logger.error("Medication load is too heavy for this drone");
-        throw new Error("Medication load is too heavy for this drone");
+        throw new AppError("Medication load is too heavy for this drone", 404);
       } else {
         await DroneMedication.create({
           droneId: drone.id,
@@ -73,12 +73,12 @@ export default class DroneService {
     });
     if (!drone) {
       logger.error("Drone not found");
-      throw new Error("Drone not found");
+      throw new AppError("Drone not found", 404);
     } else {
-      const loaded= await DroneMedication.findOne({
+      const loaded = await DroneMedication.findOne({
         where: { droneId: drone.id },
       });
-      const loadedMedication= await Medication.findOne({
+      const loadedMedication = await Medication.findOne({
         where: { id: loaded.medicationId },
       });
       const data = {
@@ -110,7 +110,7 @@ export default class DroneService {
     const drone = await Drone.findOne({ where: { serialNumber } });
     if (!drone) {
       logger.error("Drone not found");
-      throw new Error("Drone not found");
+      throw new AppError("Drone not found", 404);
     }
     return drone.batteryCapacity;
   }

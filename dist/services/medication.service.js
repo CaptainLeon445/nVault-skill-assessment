@@ -13,7 +13,7 @@ class MedicationService {
         });
         if (existingMedication) {
             logger_1.default.error("Medication code is not Found");
-            throw new Error("Code is not unique");
+            throw new AppError("Code is not unique", 404);
         }
         else {
             const medication = await medication_models_1.default.create({
@@ -31,7 +31,7 @@ class MedicationService {
         });
         if (!medication) {
             logger_1.default.error("Medication not Found");
-            throw new Error("Medication not Found");
+            throw new AppError("Medication not Found", 404);
         }
         return medication;
     }

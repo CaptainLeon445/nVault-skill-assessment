@@ -14,7 +14,7 @@ export default class MedicationService {
     });
     if (existingMedication) {
       logger.error("Medication code is not Found");
-      throw new Error("Code is not unique");
+      throw new AppError("Code is not unique",404);
     } else {
       const medication = await Medication.create({
         name,
@@ -32,7 +32,7 @@ export default class MedicationService {
     });
     if (!medication) {
       logger.error("Medication not Found");
-      throw new Error("Medication not Found");
+      throw new AppError("Medication not Found",404);
     }
     return medication;
   }
