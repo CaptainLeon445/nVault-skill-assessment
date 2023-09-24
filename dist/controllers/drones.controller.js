@@ -24,8 +24,8 @@ exports.registerDrone = registerDrone;
 const loadDrone = async (req, res, next) => {
     try {
         req.body.serialNumber = req.params.serialNumber;
-        const { serialNumber, medicationId, batteryLevel } = req.body;
-        const data = await drone_service_1.default.loadDrone(serialNumber, medicationId, batteryLevel);
+        const { serialNumber, medicationId } = req.body;
+        const data = await drone_service_1.default.loadDrone(serialNumber, medicationId);
         res.status(200).json({
             message: "Success",
             data,

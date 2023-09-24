@@ -20,11 +20,7 @@ export default class DroneService {
     return drone;
   }
 
-  static async loadDrone(
-    serialNumber: string,
-    medicationId: number,
-    batteryLevel: number
-  ) {
+  static async loadDrone(serialNumber: string, medicationId: number) {
     const drone = await Drone.findOne({
       where: { serialNumber },
     });
@@ -38,7 +34,6 @@ export default class DroneService {
       logger.error("Drone cannot be loaded");
       throw new Error("Drone cannot be loaded");
     } else {
-      console.log("checking", medicationId);
       const medication = await Medication.findOne({
         where: { id: medicationId },
       });
@@ -46,8 +41,8 @@ export default class DroneService {
         logger.error("Medication not Found");
         return new Error("Medication not Found");
       } else if (medication.weight > drone.weightLimit) {
-        logger.error("Medication too heavy for this drone");
-        throw new Error("Medication too heavy for this drone");
+        logger.error("Medication load is too heavy for this drone");
+        throw new Error("Medication load is too heavy for this drone");
       } else {
         await DroneMedication.create({
           droneId: drone.id,
@@ -55,8 +50,19 @@ export default class DroneService {
         });
 
         drone.state = "LOADED";
-        await drone.save();
-        return drone;
+        const obj = await drone.save();
+        const data = {
+          drone: {
+            ...obj.dataValues,
+            load: {
+              weight: medication.weight,
+              name: medication.name,
+              code: medication.code,
+              image: medication.image,
+            },
+          },
+        };
+        return data;
       }
     }
   }

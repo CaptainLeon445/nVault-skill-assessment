@@ -32,11 +32,10 @@ export const loadDrone = async (
 ) => {
   try {
     req.body.serialNumber = req.params.serialNumber;
-    const { serialNumber, medicationId, batteryLevel } = req.body;
+    const { serialNumber, medicationId} = req.body;
     const data = await DroneService.loadDrone(
       serialNumber,
-      medicationId,
-      batteryLevel
+      medicationId
     );
     res.status(200).json({
       message: "Success",
