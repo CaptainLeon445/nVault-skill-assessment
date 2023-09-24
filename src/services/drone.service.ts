@@ -2,7 +2,7 @@ import Drone from "../models/drone.models";
 import DroneMedication from "../models/droneMedication.model";
 import Medication from "../models/medication.models";
 import logger from "../logger";
-import { NextFunction } from "express";
+import { AppError } from "../middleware/AppError";
 export default class DroneService {
   static async registerDrone(
     serialNumber: string,

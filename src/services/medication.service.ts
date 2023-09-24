@@ -1,4 +1,5 @@
 import logger from "../logger";
+import { AppError } from "../middleware/AppError";
 import Medication from "../models/medication.models";
 
 export default class MedicationService {
@@ -36,7 +37,6 @@ export default class MedicationService {
     }
     return medication;
   }
-
   static async getAllMedications() {
     const medications = await Medication.findAll();
     return medications;

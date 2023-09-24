@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const logger_1 = __importDefault(require("../logger"));
+const AppError_1 = require("../middleware/AppError");
 const medication_models_1 = __importDefault(require("../models/medication.models"));
 class MedicationService {
     static async createMedication(name, weight, code, image) {
@@ -13,7 +14,7 @@ class MedicationService {
         });
         if (existingMedication) {
             logger_1.default.error("Medication code is not Found");
-            throw new AppError("Code is not unique", 404);
+            throw new AppError_1.AppError("Code is not unique", 404);
         }
         else {
             const medication = await medication_models_1.default.create({
@@ -31,7 +32,7 @@ class MedicationService {
         });
         if (!medication) {
             logger_1.default.error("Medication not Found");
-            throw new AppError("Medication not Found", 404);
+            throw new AppError_1.AppError("Medication not Found", 404);
         }
         return medication;
     }
