@@ -33,6 +33,7 @@ class DroneService {
         }
         else if (drone.batteryCapacity < 25) {
             logger_1.default.error("Drone cannot be loaded");
+            console.log("here");
             throw new AppError_1.AppError("Drone cannot be loaded", 404);
         }
         else {

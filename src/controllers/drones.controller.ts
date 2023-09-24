@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import DroneService from "../services/drone.service";
 import logger from "../logger";
+import { AppError } from "../middleware/AppError";
 
 export const registerDrone = async (
   req: Request,
@@ -43,7 +44,7 @@ export const loadDrone = async (
     });
   } catch (error) {
     logger.error(error);
-    next(new Error(error));
+    next(error);
   }
 };
 

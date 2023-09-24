@@ -33,7 +33,7 @@ const loadDrone = async (req, res, next) => {
     }
     catch (error) {
         logger_1.default.error(error);
-        next(new Error(error));
+        next(error);
     }
 };
 exports.loadDrone = loadDrone;
