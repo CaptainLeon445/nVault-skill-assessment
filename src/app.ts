@@ -1,5 +1,6 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import dotenv from "dotenv"
+import morgan from "morgan"
 dotenv.config()
 import droneRoutes from "./routes/drones.routes";
 import medicationRoutes from "./routes/medications.routes";
@@ -11,6 +12,7 @@ import sequelize from "./db/connection";
 const app: Application = express();
 
 app.use(express.json());
+app.use(morgan("dev"))
 async () => {
   try {
     await sequelize.sync({ alter: true });
