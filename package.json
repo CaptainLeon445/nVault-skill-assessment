@@ -6,7 +6,7 @@
   "scripts": {
     "start-sever": "node dist/index.js",
     "watch": "npx tsc --watch",
-    "start": "concurrently \"node dist/index.js\" \"npx tsc --watch\""
+    "start": "concurrently \"npx tsc --watch\" \"node dist/index.js\""
   },
   "keywords": [],
   "author": "Christopher Ifeoluwa Oni",
