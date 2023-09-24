@@ -1,26 +1,24 @@
 import { NextFunction, Request, Response } from "express";
+import { AppError } from "./AppError";
 
 export const globalErrorHandler = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction,
-  statusCode: number = 500 // Default status code is 500
+  next: NextFunction
 ) => {
   console.error('Error:', err);
 
-  if (statusCode === 500) {
-    console.error(err);
-    res.status(statusCode).json({
-        error: {
-          message: err.message || 'Something went wrong'
-        }
-      });
+  if (err instanceof AppError) {
+    return res.status(err.statusCode).json({
+      error: {
+        message: err.message,
+      },
+    });
   }
-
-  res.status(statusCode).json({
+  res.status(500).json({
     error: {
-      message: err.message || 'Something went wrong'
-    }
+      message: "Something went wrong",
+    },
   });
 };
