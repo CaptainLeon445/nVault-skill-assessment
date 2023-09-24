@@ -6,9 +6,16 @@ export default class MedicationService {
     name: string,
     weight: number,
     code: string,
-    image: number
+    image: string
   ) {
-    try {
+    // Check if the 'code' is already used in the database
+    const existingMedication = await Medication.findOne({
+      where: { code: code },
+    });
+    if (existingMedication) {
+      logger.error("Medication code is not Found");
+      throw new Error("Code is not unique");
+    } else {
       const medication = await Medication.create({
         name,
         weight,
@@ -16,33 +23,22 @@ export default class MedicationService {
         image,
       });
       return medication;
-    } catch (error) {
-      logger.error(error);
-      throw new Error("Error creating medication");
     }
   }
 
   static async getMedication(medicationId: number) {
-    try {
-      const medication = await Medication.findOne({where: {id: medicationId}});
-      if (!medication) {
-        logger.error("Medication not Found");
-        throw new Error("Medication not Found");
-      }
-      return medication;
-    } catch (error) {
-      logger.error(error);
-      throw new Error("Error fetching medication: ");
+    const medication = await Medication.findOne({
+      where: { id: medicationId },
+    });
+    if (!medication) {
+      logger.error("Medication not Found");
+      throw new Error("Medication not Found");
     }
+    return medication;
   }
 
   static async getAllMedications() {
-    try {
-      const medications = await Medication.findAll();
-      return medications;
-    } catch (error) {
-      logger.error(error);
-      throw new Error("Error fetching medications: ");
-    }
+    const medications = await Medication.findAll();
+    return medications;
   }
 }

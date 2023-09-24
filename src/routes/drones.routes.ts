@@ -6,7 +6,7 @@ import {
   loadDrone,
   registerDrone,
 } from "../controllers/drones.controller";
-import { validateDroneRegistration } from "../validation/valiadtion";
+import { validateDroneRegistration } from "../validation/droneRegistrationValidation";
 
 const router = express.Router();
 

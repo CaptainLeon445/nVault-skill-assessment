@@ -7,7 +7,15 @@ const logger_1 = __importDefault(require("../logger"));
 const medication_models_1 = __importDefault(require("../models/medication.models"));
 class MedicationService {
     static async createMedication(name, weight, code, image) {
-        try {
+        // Check if the 'code' is already used in the database
+        const existingMedication = await medication_models_1.default.findOne({
+            where: { code: code },
+        });
+        if (existingMedication) {
+            logger_1.default.error("Medication code is not Found");
+            throw new Error("Code is not unique");
+        }
+        else {
             const medication = await medication_models_1.default.create({
                 name,
                 weight,
@@ -16,34 +24,20 @@ class MedicationService {
             });
             return medication;
         }
-        catch (error) {
-            logger_1.default.error(error);
-            throw new Error("Error creating medication");
-        }
     }
     static async getMedication(medicationId) {
-        try {
-            const medication = await medication_models_1.default.findOne({ where: { id: medicationId } });
-            if (!medication) {
-                logger_1.default.error("Medication not Found");
-                throw new Error("Medication not Found");
-            }
-            return medication;
+        const medication = await medication_models_1.default.findOne({
+            where: { id: medicationId },
+        });
+        if (!medication) {
+            logger_1.default.error("Medication not Found");
+            throw new Error("Medication not Found");
         }
-        catch (error) {
-            logger_1.default.error(error);
-            throw new Error("Error fetching medication: ");
-        }
+        return medication;
     }
     static async getAllMedications() {
-        try {
-            const medications = await medication_models_1.default.findAll();
-            return medications;
-        }
-        catch (error) {
-            logger_1.default.error(error);
-            throw new Error("Error fetching medications: ");
-        }
+        const medications = await medication_models_1.default.findAll();
+        return medications;
     }
 }
 exports.default = MedicationService;

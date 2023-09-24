@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllMedications = exports.getMedication = exports.createMedication = void 0;
 const medication_service_1 = __importDefault(require("../services/medication.service"));
 const logger_1 = __importDefault(require("../logger"));
-const createMedication = async (req, res) => {
+const createMedication = async (req, res, next) => {
     try {
         const { name, weight, code, image } = req.body;
         const data = await medication_service_1.default.createMedication(name, weight, code, image);
@@ -17,14 +17,11 @@ const createMedication = async (req, res) => {
     }
     catch (error) {
         logger_1.default.error(error);
-        res.status(500).json({
-            message: "Error",
-            error: error.message,
-        });
+        next(error);
     }
 };
 exports.createMedication = createMedication;
-const getMedication = async (req, res) => {
+const getMedication = async (req, res, next) => {
     try {
         const medicationId = parseInt(req.params.medicationId, 10);
         const data = await medication_service_1.default.getMedication(medicationId);
@@ -35,14 +32,11 @@ const getMedication = async (req, res) => {
     }
     catch (error) {
         logger_1.default.error(error);
-        res.status(500).json({
-            message: "Error",
-            error: error.message,
-        });
+        next(error);
     }
 };
 exports.getMedication = getMedication;
-const getAllMedications = async (req, res) => {
+const getAllMedications = async (req, res, next) => {
     try {
         const data = await medication_service_1.default.getAllMedications();
         res.status(200).json({
@@ -53,10 +47,7 @@ const getAllMedications = async (req, res) => {
     }
     catch (error) {
         logger_1.default.error(error);
-        res.status(500).json({
-            message: "Error",
-            error: error.message,
-        });
+        next(error);
     }
 };
 exports.getAllMedications = getAllMedications;

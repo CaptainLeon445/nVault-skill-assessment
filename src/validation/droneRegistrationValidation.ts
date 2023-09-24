@@ -20,6 +20,7 @@ export const validateDroneRegistration = (
   if (error) {
     logger.error(error.details[0].message);
     return res.status(400).json({
+      status: "fail",
       error: {
         message: error.details[0].message,
       },
