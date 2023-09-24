@@ -69,8 +69,8 @@ Before you begin, ensure you have met the following requirements:
   ```shell
   curl http://localhost:3000/
 
-  * The `/v1/api/drones` endpoint is for the drones
-  * The `/v1/api/medications` endpoint is for the medications
+  * The "/v1/api/drones" endpoint is for the drones
+  * The "/v1/api/medications" endpoint is for the medications
   * Check the routes files to get the other resource
 
 ### DOCUMENTATION
