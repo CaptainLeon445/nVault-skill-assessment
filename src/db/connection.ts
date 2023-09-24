@@ -2,10 +2,10 @@ import { Sequelize } from "sequelize";
 import logger from "../logger";
 
 const dbConfig = {
-  database: "sql3648569",
-  username: "sql3648569",
-  password: "Ur6v3N1gje",
-  host: "sql3.freesqldatabase.com",
+  database: process.env.DATABASE,
+  username: process.env.USERNAME,
+  password: process.env.PASSWORD,
+  host: process.env.HOST,
 };
 
 const sequelize = new Sequelize(

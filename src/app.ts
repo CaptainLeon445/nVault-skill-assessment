@@ -1,9 +1,12 @@
 import express, { Application, NextFunction, Request, Response } from "express";
+import dotenv from "dotenv"
+dotenv.config()
 import droneRoutes from "./routes/drones.routes";
 import medicationRoutes from "./routes/medications.routes";
 import { globalErrorHandler } from "./middleware/error.middleware";
 import logger from "./logger";
 import sequelize from "./db/connection";
+
 
 const app: Application = express();
 
