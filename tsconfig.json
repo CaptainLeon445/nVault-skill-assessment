@@ -2,10 +2,11 @@
   "compilerOptions": {
     "target": "ES2020", // Set the appropriate ECMAScript version
     "module": "CommonJS",
+    "types": ["node", "express", "./express.d.ts"],
     "outDir": "./dist", // Specify the output directory for compiled code
     "rootDir": "./src", // Specify the source code directory
     "esModuleInterop": true,
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "express.d.ts"],
   "exclude": ["node_modules"]
 }
