@@ -36,7 +36,7 @@ export const loadDrone = async (
     const data = await DroneService.loadDrone(
       serialNumber,
       medicationId,
-      batteryLevel,
+      batteryLevel
     );
     res.status(200).json({
       message: "Success",
@@ -98,6 +98,38 @@ export const checkDroneBattery = async (
     });
   } catch (error) {
     logger.error(error);
+    next(error);
+  }
+};
+
+export const getAllDrones = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const data = await DroneService.getAllDrones();
+    res.status(200).json({
+      message: "success",
+      results: data.length,
+      data,
+    });
+  } catch (error) {
+    logger.error(error);
+    next(error);
+  }
+};
+
+export const checkBatteryLevels = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const data = await DroneService.checkDroneBatteryLevels();
+    return data;
+  } catch (error) {
+    logger.error("Error in checking battery levels");
     next(error);
   }
 };

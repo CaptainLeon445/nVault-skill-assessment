@@ -30,7 +30,7 @@ class DroneService {
             logger_1.default.error("Drone is not in IDLE state");
             throw new Error("Drone is not in IDLE state");
         }
-        else if (drone.batteryCapacity < batteryLevel) {
+        else if (drone.batteryCapacity < 25) {
             logger_1.default.error("Drone cannot be loaded");
             throw new Error("Drone cannot be loaded");
         }
@@ -74,6 +74,10 @@ class DroneService {
         const AvailableDrones = await drone_models_1.default.findAll({ where: { state: "IDLE" } });
         return AvailableDrones;
     }
+    static async getAllDrones() {
+        const allDrones = await drone_models_1.default.findAll();
+        return allDrones;
+    }
     static async checkDroneBattery(serialNumber) {
         const drone = await drone_models_1.default.findOne({ where: { serialNumber } });
         if (!drone) {
@@ -81,6 +85,14 @@ class DroneService {
             throw new Error("Drone not found");
         }
         return drone.batteryCapacity;
+    }
+    static async checkDroneBatteryLevels() {
+        const drones = await this.getAllDrones();
+        const batteryLevels = {};
+        drones.forEach((drone) => {
+            batteryLevels[drone.serialNumber] = drone.batteryCapacity;
+        });
+        return batteryLevels;
     }
 }
 exports.default = DroneService;

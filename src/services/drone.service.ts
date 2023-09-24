@@ -8,7 +8,7 @@ export default class DroneService {
     serialNumber: string,
     model: string,
     weightLimit: number,
-    batteryCapacity: number,
+    batteryCapacity: number
   ) {
     const drone = await Drone.create({
       serialNumber,
@@ -23,7 +23,7 @@ export default class DroneService {
   static async loadDrone(
     serialNumber: string,
     medicationId: number,
-    batteryLevel: number,
+    batteryLevel: number
   ) {
     const drone = await Drone.findOne({
       where: { serialNumber },
@@ -31,33 +31,29 @@ export default class DroneService {
     if (!drone) {
       logger.error("Drone not found");
       throw new Error("Drone not found");
-    }
-    else if (drone.state !== "IDLE") {
+    } else if (drone.state !== "IDLE") {
       logger.error("Drone is not in IDLE state");
       throw new Error("Drone is not in IDLE state");
-    }
-    else if (drone.batteryCapacity < batteryLevel) {
+    } else if (drone.batteryCapacity < 25) {
       logger.error("Drone cannot be loaded");
       throw new Error("Drone cannot be loaded");
-    }else {
-      console.log("checking", medicationId)
+    } else {
+      console.log("checking", medicationId);
       const medication = await Medication.findOne({
         where: { id: medicationId },
       });
       if (!medication) {
         logger.error("Medication not Found");
         return new Error("Medication not Found");
-      }
-      else if (medication.weight > drone.weightLimit) {
+      } else if (medication.weight > drone.weightLimit) {
         logger.error("Medication too heavy for this drone");
         throw new Error("Medication too heavy for this drone");
-      } 
-      else {
+      } else {
         await DroneMedication.create({
           droneId: drone.id,
           medicationId: medication.id,
         });
-  
+
         drone.state = "LOADED";
         await drone.save();
         return drone;
@@ -82,6 +78,11 @@ export default class DroneService {
     return AvailableDrones;
   }
 
+  static async getAllDrones() {
+    const allDrones = await Drone.findAll();
+    return allDrones;
+  }
+
   static async checkDroneBattery(serialNumber: string) {
     const drone = await Drone.findOne({ where: { serialNumber } });
     if (!drone) {
@@ -89,5 +90,15 @@ export default class DroneService {
       throw new Error("Drone not found");
     }
     return drone.batteryCapacity;
+  }
+
+  static async checkDroneBatteryLevels() {
+    const drones: Drone[] = await this.getAllDrones();
+    const batteryLevels: { [serialNumber: string]: number } = {};
+
+    drones.forEach((drone) => {
+      batteryLevels[drone.serialNumber] = drone.batteryCapacity;
+    });
+    return batteryLevels;
   }
 }
