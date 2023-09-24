@@ -47,8 +47,8 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/express-typescript-starter.git
-   cd express-typescript-starter
+   git clone git@github.com:CaptainLeon445/nVault-skill-assessment.git
+   cd nVault-skill-assessment
    
 2. Install dependencies
    ```bash
