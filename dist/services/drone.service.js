@@ -81,6 +81,15 @@ class DroneService {
             const loaded = await droneMedication_model_1.default.findOne({
                 where: { droneId: drone.id },
             });
+            if (!loaded) {
+                const data = {
+                    drone: {
+                        ...drone.dataValues,
+                        load: {},
+                    },
+                };
+                return data;
+            }
             const loadedMedication = await medication_models_1.default.findOne({
                 where: { id: loaded.medicationId },
             });
