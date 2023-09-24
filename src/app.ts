@@ -14,7 +14,7 @@ app.use(express.json());
 async () => {
   try {
     await sequelize.sync({ alter: true });
-    logger.info("Models Scynchronized with the database");
+    // logger.info("Models Scynchronized with the database");
     console.log("Models Scynchronized with the database");
   } catch (error) {
     logger.error(error);

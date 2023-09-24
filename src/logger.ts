@@ -11,18 +11,17 @@ const logLevels = {
   };
 const logger = winston.createLogger({
     format: combine(
-        colorize({ all: true }),
+        // colorize({ all: true }),
         timestamp({
           format: 'YYYY-MM-DD hh:mm:ss.SSS A',
         }),
-        align(),
+        // align(),
         printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
       ),
     transports: [
         new winston.transports.Console,
         new winston.transports.File({ filename: 'logs/error/error.log', level: 'error' }),
-        new winston.transports.File({ filename: 'logs/activity/activity.log', level: 'info' }),
-        new winston.transports.File({ filename: 'logs/audit/event.log', level: 'audit' })
+        new winston.transports.File({ filename: 'logs/audit/event.log', level: 'info' }),
     ]
 })
 

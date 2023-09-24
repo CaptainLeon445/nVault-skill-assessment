@@ -8,12 +8,10 @@ class job {
 
     }
     
-    //Shop code refresh at 12:00 AM
+    //Check Battery level of the drones every minute
     public async checkBatteryLevel() {
         var rule = new schedule.RecurrenceRule();
-        rule.dayOfWeek = [0, new schedule.Range(0, 6)];
-        rule.hour = 0;
-        rule.minute = 1;
+        rule.second = 0;
         schedule.scheduleJob(rule, async function() {
             try{
                 const data=await DroneService.checkDroneBatteryLevels()

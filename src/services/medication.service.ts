@@ -17,7 +17,7 @@ export default class MedicationService {
       });
       return medication;
     } catch (error) {
-      logger.info(error);
+      logger.error(error);
       throw new Error("Error creating medication");
     }
   }
@@ -26,12 +26,12 @@ export default class MedicationService {
     try {
       const medication = await Medication.findOne({where: {id: medicationId}});
       if (!medication) {
-        logger.info("Medication not Found");
+        logger.error("Medication not Found");
         throw new Error("Medication not Found");
       }
       return medication;
     } catch (error) {
-      logger.info(error);
+      logger.error(error);
       throw new Error("Error fetching medication: ");
     }
   }
@@ -41,7 +41,7 @@ export default class MedicationService {
       const medications = await Medication.findAll();
       return medications;
     } catch (error) {
-      logger.info(error);
+      logger.error(error);
       throw new Error("Error fetching medications: ");
     }
   }
