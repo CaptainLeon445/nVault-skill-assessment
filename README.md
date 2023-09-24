@@ -55,7 +55,7 @@ Before you begin, ensure you have met the following requirements:
    npm install
 
 
-### Run in *devevelopment* mode
+### Running the Development Server
 
 1. Runs the application in development mode
 
