@@ -23,9 +23,9 @@ sequelize
   .then(() => {
     console.log("Database connected successfully!");
   })
-  .catch((err: Error) => {
+  .catch((err) => {
     logger.info("Unable to connect to the database");
-    console.error("Unable to connect to the database");
+    console.error("Unable to connect to the database", err.message);
   });
 
 export default sequelize;

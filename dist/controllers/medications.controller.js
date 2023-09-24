@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllMedications = exports.getMedication = exports.createMedication = void 0;
 const medication_service_1 = __importDefault(require("../services/medication.service"));
+const logger_1 = __importDefault(require("../logger"));
 const createMedication = async (req, res) => {
     try {
         const { name, weight, code, image } = req.body;
@@ -15,6 +16,7 @@ const createMedication = async (req, res) => {
         });
     }
     catch (error) {
+        logger_1.default.error(error);
         res.status(500).json({
             message: "Error",
             error: error.message,
@@ -24,7 +26,7 @@ const createMedication = async (req, res) => {
 exports.createMedication = createMedication;
 const getMedication = async (req, res) => {
     try {
-        const { medicationId } = req.params;
+        const medicationId = parseInt(req.params.medicationId, 10);
         const data = await medication_service_1.default.getMedication(medicationId);
         res.status(200).json({
             message: "Success",
@@ -32,6 +34,7 @@ const getMedication = async (req, res) => {
         });
     }
     catch (error) {
+        logger_1.default.error(error);
         res.status(500).json({
             message: "Error",
             error: error.message,
@@ -49,6 +52,7 @@ const getAllMedications = async (req, res) => {
         });
     }
     catch (error) {
+        logger_1.default.error(error);
         res.status(500).json({
             message: "Error",
             error: error.message,

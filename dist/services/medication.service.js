@@ -23,7 +23,7 @@ class MedicationService {
     }
     static async getMedication(medicationId) {
         try {
-            const medication = await medication_models_1.default.findByPk(medicationId);
+            const medication = await medication_models_1.default.findOne({ where: { id: medicationId } });
             if (!medication) {
                 logger_1.default.info("Medication not Found");
                 throw new Error("Medication not Found");

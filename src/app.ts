@@ -8,25 +8,26 @@ import sequelize from "./db/connection";
 const app: Application = express();
 
 app.use(express.json());
-async ()=> {
-  try{
-    await sequelize.sync({ alter: true})
-    console.log("Models Scynchronized with the database")
-  }catch(error){
-    logger.info(error)
-    console.error("Error synchronizing models")
-  }finally{
-    sequelize.close()
+async () => {
+  try {
+    await sequelize.sync({ alter: true });
+    logger.info("Models Scynchronized with the database");
+    console.log("Models Scynchronized with the database");
+  } catch (error) {
+    logger.error(error);
+    console.error("Error synchronizing models");
+  } finally {
+    sequelize.close();
   }
-}
+};
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express and Typescript server with Leon. Ok43");
 });
-app.use("/drones", droneRoutes);
-app.use("/medications", medicationRoutes);
+app.use("/v1/api/drones", droneRoutes);
+app.use("/v1/api/medications", medicationRoutes);
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
-  logger.info(`Can't find ${req.originalUrl} on this server!`);
+  logger.error(`Can't find ${req.originalUrl} on this server!`);
   const error = new Error(`Can't find ${req.originalUrl} on this server!`);
   res.status(404).json({
     error: {

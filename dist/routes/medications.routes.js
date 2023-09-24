@@ -8,5 +8,5 @@ const medications_controller_1 = require("../controllers/medications.controller"
 const router = express_1.default.Router();
 router.get("/", medications_controller_1.getAllMedications);
 router.post("/", medications_controller_1.createMedication);
-router.post("/:medicationId", medications_controller_1.getMedication);
+router.get("/:medicationId", medications_controller_1.getMedication);
 exports.default = router;

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import MedicationService from "../services/medication.service";
+import logger from "../logger";
 
 export const createMedication = async (req: Request, res: Response) => {
   try {
@@ -15,6 +16,7 @@ export const createMedication = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
+    logger.error(error);
     res.status(500).json({
       message: "Error",
       error: error.message,
@@ -24,13 +26,14 @@ export const createMedication = async (req: Request, res: Response) => {
 
 export const getMedication = async (req: Request, res: Response) => {
   try {
-    const { medicationId } = req.params;
+    const medicationId: number = parseInt(req.params.medicationId, 10);
     const data = await MedicationService.getMedication(medicationId);
     res.status(200).json({
       message: "Success",
       data,
     });
   } catch (error) {
+    logger.error(error);
     res.status(500).json({
       message: "Error",
       error: error.message,
@@ -47,6 +50,7 @@ export const getAllMedications = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
+    logger.error(error);
     res.status(500).json({
       message: "Error",
       error: error.message,

@@ -22,9 +22,9 @@ export default class MedicationService {
     }
   }
 
-  static async getMedication(medicationId: string) {
+  static async getMedication(medicationId: number) {
     try {
-      const medication = await Medication.findByPk(medicationId);
+      const medication = await Medication.findOne({where: {id: medicationId}});
       if (!medication) {
         logger.info("Medication not Found");
         throw new Error("Medication not Found");

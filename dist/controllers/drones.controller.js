@@ -16,7 +16,7 @@ const registerDrone = async (req, res, next) => {
         });
     }
     catch (error) {
-        logger_1.default.info(error);
+        logger_1.default.error(error);
         next(error);
     }
 };
@@ -32,8 +32,8 @@ const loadDrone = async (req, res, next) => {
         });
     }
     catch (error) {
-        logger_1.default.info(error);
-        next(error);
+        logger_1.default.error(error);
+        next(new Error(error));
     }
 };
 exports.loadDrone = loadDrone;
@@ -47,7 +47,7 @@ const checkLoadMedications = async (req, res, next) => {
         });
     }
     catch (error) {
-        logger_1.default.info(error);
+        logger_1.default.error(error);
         next(error);
     }
 };
@@ -62,7 +62,7 @@ const checkAvailableDrones = async (req, res, next) => {
         });
     }
     catch (error) {
-        logger_1.default.info(error);
+        logger_1.default.error(error);
         next(error);
     }
 };
@@ -70,14 +70,14 @@ exports.checkAvailableDrones = checkAvailableDrones;
 const checkDroneBattery = async (req, res, next) => {
     try {
         const { serialNumber } = req.params;
-        const data = await drone_service_1.default.checkDroneBattery(serialNumber);
+        const droneBattery = await drone_service_1.default.checkDroneBattery(serialNumber);
         res.status(200).json({
             message: "Success",
-            data,
+            data: droneBattery,
         });
     }
     catch (error) {
-        logger_1.default.info(error);
+        logger_1.default.error(error);
         next(error);
     }
 };
