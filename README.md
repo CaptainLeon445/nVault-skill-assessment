@@ -1,6 +1,6 @@
-# Express.js with TypeScript Starter
+# DRONES: nVault SKILLS ASSESSMENT
 
-A comprehensive starter template for building web applications with Express.js and TypeScript.
+A comprehensive documenttaion for building server-side application for Drones with Express.js and TypeScript.
 
 ## Table of Contents
 
@@ -10,19 +10,19 @@ A comprehensive starter template for building web applications with Express.js a
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Running the Development Server](#running-the-development-server)
-- [Project Structure](#project-structure)
-- [Configuration](#configuration)
-- [Routes](#routes)
-- [Middleware](#middleware)
-- [Error Handling](#error-handling)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+- [DOCUMENTATION](#documentation)
+  
+
+
 
 ## Introduction
 
-This starter template provides a solid foundation for building web applications with Express.js and TypeScript. It includes essential features, project structure, and configuration to help you kickstart your development.
+There is a major new technology that is destined to be a disruptive force in the field of
+transportation: **the drone**. Just as the mobile phone allowed developing countries to leapfrog
+older technologies for personal communication, the drone has the potential to leapfrog
+traditional transportation infrastructure.
+Useful drone functions include delivery of small items that are (urgently) needed in locations
+with difficult access.
 
 ## Features
 
@@ -31,8 +31,7 @@ This starter template provides a solid foundation for building web applications 
 - Customizable project structure with clear separation of concerns.
 - Configurable environment variables using `.env` files.
 - Pre-configured logging and error handling middleware.
-- Basic testing setup with example test files.
-- Includes common dependencies such as `dotenv`, `Joi`, and `sequelize` for database interactions.
+- Includes common dependencies such as `dotenv`, `Joi`, `Typescript`, `MySql` and `sequelize` for database interactions.
 
 ## Prerequisites
 
@@ -50,3 +49,30 @@ Before you begin, ensure you have met the following requirements:
    ```bash
    git clone https://github.com/yourusername/express-typescript-starter.git
    cd express-typescript-starter
+   
+2. Install dependencies
+   ```bash
+   npm install
+
+
+### Run in *devevelopment* mode
+
+1. Runs the application in development mode
+
+   ```bash
+   npm run watch
+
+2. Open Browser or Postman
+
+  * Open your browser to [http://localhost:3000](http://localhost:3000)
+  * Invoke the `/` endpoint
+  ```shell
+  curl http://localhost:3000/
+
+  * The `/v1/api/drones` endpoint is for the drones
+  * The `/v1/api/medications` endpoint is for the medications
+  * Check the routes files to get the other resource
+
+### DOCUMENTATION
+
+  * The API documentation is available on [https://documenter.getpostman.com/view/21828151/2s9YJW55pr](https://documenter.getpostman.com/view/21828151/2s9YJW55pr)
