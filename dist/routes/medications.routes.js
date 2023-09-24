@@ -8,6 +8,7 @@ const medications_controller_1 = require("../controllers/medications.controller"
 const medicationValidation_1 = require("../validation/medicationValidation");
 const router = express_1.default.Router();
 router.get("/", medications_controller_1.getAllMedications);
-router.post("/", medicationValidation_1.validateMedicationSchema, medicationValidation_1.uploadImage, medicationValidation_1.storeImageInFolder, medications_controller_1.createMedication);
+router.post("/", medicationValidation_1.validateMedicationSchema, medications_controller_1.createMedication);
+router.patch("/:medicationId/addImage", medicationValidation_1.uploadImage, medicationValidation_1.storeImageInFolder, medications_controller_1.addImageToMedication);
 router.get("/:medicationId", medications_controller_1.getMedication);
 exports.default = router;

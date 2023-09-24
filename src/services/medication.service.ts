@@ -7,7 +7,6 @@ export default class MedicationService {
     name: string,
     weight: number,
     code: string,
-    image: string
   ) {
     // Check if the 'code' is already used in the database
     const existingMedication = await Medication.findOne({
@@ -20,10 +19,25 @@ export default class MedicationService {
       const medication = await Medication.create({
         name,
         weight,
-        code,
-        image,
+        code
       });
       return medication;
+    }
+  }
+
+  static async addImageToMedication(
+    image: string,
+    medicationId: number
+  ) {
+    
+    const existingMedication = await Medication.findByPk(medicationId);
+    if (!existingMedication) {
+      logger.error("Medication Load is not Found");
+      throw new AppError("Medication Load is not found",404);
+    } else {
+      existingMedication .image = image
+      const data =await existingMedication .save()
+      return data;
     }
   }
 

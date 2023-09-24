@@ -8,12 +8,33 @@ export const createMedication = async (
   next: NextFunction
 ) => {
   try {
-    const { name, weight, code, image } = req.body;
+    const { name, weight, code} = req.body;
     const data = await MedicationService.createMedication(
       name,
       weight,
-      code,
-      image
+      code
+    );
+    res.status(201).json({
+      message: "Success",
+      data,
+    });
+  } catch (error) {
+    logger.error(error);
+    next(error);
+  }
+};
+
+export const addImageToMedication = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    req.body.medicationId = parseInt(req.params.medicationId, 10)
+    const { image, medicationId} = req.body;
+    const data = await MedicationService.addImageToMedication(
+      image,
+      medicationId
     );
     res.status(201).json({
       message: "Success",

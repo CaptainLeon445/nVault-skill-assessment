@@ -3,13 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllMedications = exports.getMedication = exports.createMedication = void 0;
+exports.getAllMedications = exports.getMedication = exports.addImageToMedication = exports.createMedication = void 0;
 const medication_service_1 = __importDefault(require("../services/medication.service"));
 const logger_1 = __importDefault(require("../logger"));
 const createMedication = async (req, res, next) => {
     try {
-        const { name, weight, code, image } = req.body;
-        const data = await medication_service_1.default.createMedication(name, weight, code, image);
+        const { name, weight, code } = req.body;
+        const data = await medication_service_1.default.createMedication(name, weight, code);
         res.status(201).json({
             message: "Success",
             data,
@@ -21,6 +21,22 @@ const createMedication = async (req, res, next) => {
     }
 };
 exports.createMedication = createMedication;
+const addImageToMedication = async (req, res, next) => {
+    try {
+        req.body.medicationId = parseInt(req.params.medicationId, 10);
+        const { image, medicationId } = req.body;
+        const data = await medication_service_1.default.addImageToMedication(image, medicationId);
+        res.status(201).json({
+            message: "Success",
+            data,
+        });
+    }
+    catch (error) {
+        logger_1.default.error(error);
+        next(error);
+    }
+};
+exports.addImageToMedication = addImageToMedication;
 const getMedication = async (req, res, next) => {
     try {
         const medicationId = parseInt(req.params.medicationId, 10);

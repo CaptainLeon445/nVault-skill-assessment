@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  addImageToMedication,
   createMedication,
   getAllMedications,
   getMedication,
@@ -16,9 +17,13 @@ router.get("/", getAllMedications);
 router.post(
   "/",
   validateMedicationSchema,
+  createMedication
+)
+router.patch(
+  "/:medicationId/addImage",
   uploadImage,
   storeImageInFolder,
-  createMedication
+  addImageToMedication
 );
 router.get("/:medicationId", getMedication);
 export default router;

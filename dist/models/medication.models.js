@@ -34,7 +34,7 @@ Medication.init({
     },
     image: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
 }, {
     sequelize: connection_1.default,

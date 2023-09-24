@@ -7,7 +7,7 @@ const logger_1 = __importDefault(require("../logger"));
 const AppError_1 = require("../middleware/AppError");
 const medication_models_1 = __importDefault(require("../models/medication.models"));
 class MedicationService {
-    static async createMedication(name, weight, code, image) {
+    static async createMedication(name, weight, code) {
         // Check if the 'code' is already used in the database
         const existingMedication = await medication_models_1.default.findOne({
             where: { code: code },
@@ -20,10 +20,21 @@ class MedicationService {
             const medication = await medication_models_1.default.create({
                 name,
                 weight,
-                code,
-                image,
+                code
             });
             return medication;
+        }
+    }
+    static async addImageToMedication(image, medicationId) {
+        const existingMedication = await medication_models_1.default.findByPk(medicationId);
+        if (!existingMedication) {
+            logger_1.default.error("Medication Load is not Found");
+            throw new AppError_1.AppError("Medication Load is not found", 404);
+        }
+        else {
+            existingMedication.image = image;
+            const data = await existingMedication.save();
+            return data;
         }
     }
     static async getMedication(medicationId) {

@@ -3,7 +3,6 @@ import logger from "../logger";
 import Joi from "joi";
 import multer from "multer";
 import sharp from "sharp";
-import Medication from "../models/medication.models";
 
 const storage = multer.memoryStorage();
 const upload = multer({
@@ -34,22 +33,18 @@ const medicationSchema = Joi.object({
     }),
 });
 
-// Middleware function to validate Medication objects
 export const validateMedicationSchema = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { error } = medicationSchema.validate(req.file);
+  const { error } = medicationSchema.validate(req.body);
   if (error) {
     logger.error(error.details[0].message);
     return res.status(400).json({
       status: "fail",
       error: {
         message: error.details[0].message,
-        body: req.body,
-        file: req.file,
-        req,
       },
     });
   }
