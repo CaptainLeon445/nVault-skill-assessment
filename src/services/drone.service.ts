@@ -75,7 +75,24 @@ export default class DroneService {
       logger.error("Drone not found");
       throw new Error("Drone not found");
     } else {
-      return drone;
+      const loaded= await DroneMedication.findOne({
+        where: { droneId: drone.id },
+      });
+      const loadedMedication= await Medication.findOne({
+        where: { id: loaded.medicationId },
+      });
+      const data = {
+        drone: {
+          ...drone.dataValues,
+          load: {
+            weight: loadedMedication.weight,
+            name: loadedMedication.name,
+            code: loadedMedication.code,
+            image: loadedMedication.image,
+          },
+        },
+      };
+      return data;
     }
   }
 

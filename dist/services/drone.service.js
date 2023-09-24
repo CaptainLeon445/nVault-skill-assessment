@@ -77,7 +77,24 @@ class DroneService {
             throw new Error("Drone not found");
         }
         else {
-            return drone;
+            const loaded = await droneMedication_model_1.default.findOne({
+                where: { droneId: drone.id },
+            });
+            const loadedMedication = await medication_models_1.default.findOne({
+                where: { id: loaded.medicationId },
+            });
+            const data = {
+                drone: {
+                    ...drone.dataValues,
+                    load: {
+                        weight: loadedMedication.weight,
+                        name: loadedMedication.name,
+                        code: loadedMedication.code,
+                        image: loadedMedication.image,
+                    },
+                },
+            };
+            return data;
         }
     }
     static async checkAvailableDrones() {
