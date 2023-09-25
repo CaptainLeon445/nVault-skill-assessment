@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "start-sever": "node dist/index.js",
-    "watch": "npx tsc --watch",
-    "start": "concurrently \"npx tsc --watch\" \"npx nodemon dist/index.js\""
+    "start-watch": "npx tsc --watch",
+    "watch": "concurrently \"npx tsc --watch\" \"npx nodemon dist/index.js\""
   },
   "keywords": [],
   "author": "Christopher Ifeoluwa Oni",
